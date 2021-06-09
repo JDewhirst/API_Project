@@ -6,13 +6,14 @@ using System.Threading.Tasks;
 using RestSharp;
 using Newtonsoft.Json;
 using System.Configuration;
+using DataModel;
 namespace APITest
 {
     public class DTO
     {
-        public T Deserialize<T>(string ojectContent)
+        public Film[] Deserialize(string ojectContent)
         {
-            return JsonConvert.DeserializeObject<T>(ojectContent);
+            return JsonConvert.DeserializeObject<Result>(ojectContent).films;
         }
     }
 }
