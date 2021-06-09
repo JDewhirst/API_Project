@@ -5,10 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 using RestSharp;
 using Newtonsoft.Json;
-
+using System.Configuration;
 namespace APITest
 {
-    class DTO
+    public class DTO
     {
+        public void Deserialize<T>(string ojectContent)
+        {
+            
+        }
     }
 }
