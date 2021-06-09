@@ -10,9 +10,9 @@ namespace APITest
 {
     public class DTO
     {
-        public void Deserialize<T>(string ojectContent)
+        public T Deserialize<T>(string ojectContent)
         {
-            
+            return JsonConvert.DeserializeObject<T>(ojectContent);
         }
     }
 }
