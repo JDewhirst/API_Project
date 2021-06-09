@@ -3,15 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Collections.Specialized;
 using System.Configuration;
 namespace APITest
 {
-    public static class ConfigReader
+    public class ConfigReader
     {
-        
+       
         public static string BaseURL()
         {
-            return ConfigurationManager.AppSettings["BaseURL"];
+            string ans =  ConfigurationManager.AppSettings["baseUrl"];
+            NameValueCollection nsv = ConfigurationManager.AppSettings;
+            return ans;
         }
         
     }
