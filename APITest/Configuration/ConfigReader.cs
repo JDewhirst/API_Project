@@ -8,11 +8,8 @@ namespace APITest
 {
     public static class ConfigReader
     {
-        
-        public static string BaseURL()
-        {
-            return ConfigurationManager.AppSettings["BaseURL"];
-        }
-        
+        public static readonly string BaseURL = "https://my-json-server.typicode.com/Bongiboy777/APITesting";//ConfigurationManager.AppSettings["baseUrl"];
+        // ;///
+
     }
 }
