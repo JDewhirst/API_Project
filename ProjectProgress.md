@@ -22,4 +22,4 @@ Project to take place in two day long sprints beginning the morning of  09/06/20
 
 **Pre-Sprint Project Board**
 
-![image-20210609111728466](ProjectProgressImages\sprint1_presprint_projectboard.png)
+![image-20210609111728466](ProjectProgressImages/sprint1_presprint_projectboard.png)
