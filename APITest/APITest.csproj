@@ -6,6 +6,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="CallManagement\Services\**" />
+    <EmbeddedResource Remove="CallManagement\Services\**" />
+    <None Remove="CallManagement\Services\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Configuration\app.config.xml" />
   </ItemGroup>
 
@@ -13,10 +19,6 @@
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="RestSharp" Version="106.11.7" />
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="5.0.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="CallManagement\Services\" />
   </ItemGroup>
 
 </Project>
