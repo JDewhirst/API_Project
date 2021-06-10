@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,6 +7,7 @@ using RestSharp;
 using DataModel;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
+using System.Text.RegularExpressions;
 namespace APITest
 {
     public class CallManager : ICallable
@@ -14,7 +15,7 @@ namespace APITest
         IRestClient _client;
         IRestRequest _newRequest;
         DTO _dto;
-        public int StatusCode {get; private set;}
+        public int StatusCode { get; private set; }
         public string StatusDescription { get; private set; }
 
 
@@ -30,10 +31,22 @@ namespace APITest
             _dto = new DTO();
         }
 
-        public async Task<Result> DeleteFilm(string request)
+        public async Task DeleteFilm(string request)
         {
             _newRequest = new RestRequest(Method.DELETE);
-            _newRequest.Resource = $"Movies/{request}";
+            _newRequest.Resource = $"Films/{request}";
+            var result = await _client.ExecuteAsync<string>(_newRequest);
+
+            StatusDescription = result.StatusDescription;
+            StatusCode = (int)result.StatusCode;
+            //Result expected = _dto.Deserialize<Result>(result.Content);
+
+        }
+
+        public async Task<Result> AddFilm(string request)
+        {
+            _newRequest = new RestRequest(Method.DELETE);
+            _newRequest.Resource = $"Films/{request}";
             var result = await _client.ExecuteAsync<string>(_newRequest);
 
             StatusDescription = result.StatusDescription;
@@ -42,21 +55,58 @@ namespace APITest
             return expected;
         }
 
-
-        public async Task<Film[]> Request(string request)
+        public async Task<Result> UpdateFilm(string request)
         {
-            _newRequest = new RestRequest(Method.GET);
-
-            _newRequest.Timeout = -1;
-            _newRequest.AddHeader("Content-Type", "application/json");
-            _newRequest.Resource = ("Films");
-
+            _newRequest = new RestRequest(Method.DELETE);
+            _newRequest.Resource = $"Films/{request}";
             var result = await _client.ExecuteAsync<string>(_newRequest);
+
+
             StatusDescription = result.StatusDescription;
-            Film[] output = _dto.Deserialize(result.Content);
-            return output;
+            StatusCode = (int)result.StatusCode;
+            Result expected = _dto.Deserialize<Result>(result.Content);
+            return expected;
         }
 
-        
+
+        public async Task<Result> Request(string request)
+        {
+
+            _newRequest =
+                request != "" ? new RestRequest(Method.GET) :
+                throw new ArgumentException();
+            _newRequest.AddHeader("Content-Type", "application/Json");
+
+
+            //_newRequest.AddJsonBody(new JObject { new JProperty("postcodes", new JArray { "OX49 5NU", "M32 0JG", "NE30 1DP" })}.ToString());
+            _newRequest.Resource = $"Films?title={request}";
+            //_newRequest.Resource = $"postcodes";// Films/1";//?title={request.Replace(" ","%20")}";
+
+            var result = await _client.ExecuteAsync<string>(_newRequest);
+            StatusCode = (int)result.StatusCode;
+
+            StatusDescription = result.StatusDescription;
+            Result expected = _dto.Deserialize<Result>($"{result.Data}");
+            return expected;
+        }
+
+        public async Task<Result> RequestAll()
+        {
+
+            _newRequest = new RestRequest(Method.GET);
+
+            _newRequest.AddHeader("Content-Type", "application/Json");
+
+            _newRequest.Resource = $"Films";
+
+
+            var result = await _client.ExecuteAsync<string>(_newRequest);
+
+
+            StatusDescription = result.StatusDescription;
+            Result expected = _dto.Deserialize<Result>($"{result.Data}");
+            return null;
+        }
+
     }
 }

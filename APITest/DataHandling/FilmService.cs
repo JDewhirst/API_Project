@@ -31,7 +31,7 @@ namespace APITest
             FilmSelected = filmId;
 
             // Make request
-            FilmResult = await CallManager.DeleteFilm(filmId);
+            await CallManager.DeleteFilm(filmId);
             
 
             

@@ -6,9 +6,13 @@ namespace APITest
     {
         int StatusCode { get; }
         string StatusDescription { get; }
-        //Task<IResult> Query<IResult>(string input);
-        Task<Film[]> Request(string input);
 
-        Task<Result> DeleteFilm(string request);
+        Task DeleteFilm(string request);
+
+        Task<Result> AddFilm(string request);
+
+        Task<Result> UpdateFilm(string request);
+
+        Task<Result> Request(string request);
     }
 }
