@@ -17,7 +17,7 @@ namespace UserStory4Tests
         [OneTimeSetUp]
         public async Task Setup()
         {
-            Film upDatedFilm = new Film {title = "testupdate",actors = new string[] { "da", "asd" }, category = new string[] { "da", "asd" }, Company = " ", desc = " ", directors = "asd", releaseDate = "asdf", rating = "13" };
+            Film upDatedFilm = new Film {title = "testupdate",actors = new string[] { "da", "asd" }, category = new string[] { "da", "asd" }, Company = " ", desc = " ", directors = "asd", releaseDate = "asdf", rating = "13", languages = new string[] {"Cantonese", "English" } };
             _filmService = new CallManager();
 
            result = await _filmService.UpdateFilm(4.ToString(), upDatedFilm);
@@ -26,14 +26,14 @@ namespace UserStory4Tests
         [Test]
         public void StatusIs_201()
         {
-            Assert.That(_filmService.StatusCode, Is.EqualTo(201));
+            Assert.That(_filmService.StatusCode, Is.EqualTo(200));
         }
 
 
         [Test]
         public void StatusDescriptionIsCreated()
         {
-            Assert.That(_filmService.StatusDescription, Is.EqualTo("Created"));
+            Assert.That(_filmService.StatusDescription, Is.EqualTo("OK"));
         }
 
         [Test]
