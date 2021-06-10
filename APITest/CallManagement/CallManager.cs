@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,7 +15,7 @@ namespace APITest
         IRestClient _client;
         IRestRequest _newRequest;
         DTO _dto;
-        public int StatusCode {get; private set;}
+        public int StatusCode { get; private set; }
         public string StatusDescription { get; private set; }
 
 
@@ -40,7 +40,7 @@ namespace APITest
             StatusDescription = result.StatusDescription;
             StatusCode = (int)result.StatusCode;
             //Result expected = _dto.Deserialize<Result>(result.Content);
-    
+
         }
 
         public async Task<Result> AddFilm(string request)
@@ -60,6 +60,7 @@ namespace APITest
             _newRequest = new RestRequest(Method.DELETE);
             _newRequest.Resource = $"Films/{request}";
             var result = await _client.ExecuteAsync<string>(_newRequest);
+
 
             StatusDescription = result.StatusDescription;
             StatusCode = (int)result.StatusCode;
@@ -93,13 +94,11 @@ namespace APITest
         {
 
             _newRequest = new RestRequest(Method.GET);
-                
+
             _newRequest.AddHeader("Content-Type", "application/Json");
 
-
-            //_newRequest.AddJsonBody(new JObject { new JProperty("postcodes", new JArray { "OX49 5NU", "M32 0JG", "NE30 1DP" })}.ToString());
             _newRequest.Resource = $"Films";
-            //_newRequest.Resource = $"postcodes";// Films/1";//?title={request.Replace(" ","%20")}";
+
 
             var result = await _client.ExecuteAsync<string>(_newRequest);
 
@@ -109,25 +108,5 @@ namespace APITest
             return null;
         }
 
-        public async Task<IResult> Request<IResult>(string request, JObject body)
-        {
-            
-            _newRequest =
-                request == "" ? new RestRequest(Method.GET) :
-                request == "" ? new RestRequest(Method.POST) :
-                request == "" ? new RestRequest(Method.PUT) :
-                request == "" ? new RestRequest(Method.PATCH) :
-                throw new ArgumentException();
-
-            _newRequest.AddJsonBody(body.ToString());
-
-            var result = await _client.ExecuteAsync<string>(_newRequest);
-            Console.WriteLine(result.ContentEncoding);
-            Console.WriteLine(result.ContentType);
-            StatusDescription = result.StatusDescription;
-            IResult expected = _dto.Deserialize<IResult>(result.Content);
-            
-            return expected;
-        }
     }
 }
