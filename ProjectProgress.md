@@ -34,3 +34,18 @@ In hindsight we perhaps created more work for ourselves by using typicode rather
 **Post-Sprint Project Board**
 
 ![image-20210610092745158](ProjectProgressImages/sprint1_postsprint_projectboard.png)
+
+## Sprint 2 - 10/06/2021
+
+**Sprint Goals**
+
+- [ ] User Story 1
+- [ ] User Story 2
+- [ ] User Story 3
+- [ ] User Story 4
+- [ ] Prepare for presentation
+- [ ] Update README.md
+
+**Pre-Sprint Project Board**
+
+![](ProjectProgressImages/sprint2_presprint_projectboard.png)
