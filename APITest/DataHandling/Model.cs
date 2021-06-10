@@ -9,7 +9,7 @@ namespace DataModel
 
     public class Result : IResult
     {
-        public Film[] films { get; set; }
+        public Film[] result { get; set; }
     }
 
     public class Film
