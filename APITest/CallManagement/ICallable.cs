@@ -7,7 +7,7 @@ namespace APITest
     {
         int StatusCode { get; }
         string StatusDescription { get; }
-        Task<Result> DeleteFilm(string request);
+        Task DeleteFilm(string request);
 
         Task<Result> AddFilm(string request);
 

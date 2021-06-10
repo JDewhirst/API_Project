@@ -31,7 +31,7 @@ namespace APITest
             _dto = new DTO();
         }
 
-        public async Task<Result> DeleteFilm(string request)
+        public async Task DeleteFilm(string request)
         {
             _newRequest = new RestRequest(Method.DELETE);
             _newRequest.Resource = $"Films/{request}";
@@ -39,8 +39,8 @@ namespace APITest
 
             StatusDescription = result.StatusDescription;
             StatusCode = (int)result.StatusCode;
-            Result expected = _dto.Deserialize<Result>(result.Content);
-            return expected;
+            //Result expected = _dto.Deserialize<Result>(result.Content);
+    
         }
 
         public async Task<Result> AddFilm(string request)
@@ -78,15 +78,15 @@ namespace APITest
 
 
             //_newRequest.AddJsonBody(new JObject { new JProperty("postcodes", new JArray { "OX49 5NU", "M32 0JG", "NE30 1DP" })}.ToString());
-            _newRequest.Resource = $"Films?title={request.Replace(" ","%20")}";
+            _newRequest.Resource = $"Films?title={request}";
             //_newRequest.Resource = $"postcodes";// Films/1";//?title={request.Replace(" ","%20")}";
 
             var result = await _client.ExecuteAsync<string>(_newRequest);
-            
-            
+            StatusCode = (int)result.StatusCode;
+
             StatusDescription = result.StatusDescription;
             Result expected = _dto.Deserialize<Result>($"{result.Data}");
-            return null;
+            return expected;
         }
 
         public async Task<Result> RequestAll()
