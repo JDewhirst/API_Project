@@ -10,18 +10,17 @@ using Moq;
 
 namespace UserStory4Tests
 {
-    [Ignore("Update method not fully built implemented yet")]
     public class WhenUpdateFilmCalledWithValidIDAndBody
     {
-        
+        Result result;
         public ICallable _filmService;
         [OneTimeSetUp]
         public async Task Setup()
         {
-            Film film = new Film { actors = new string[] { "da", "asd" }, category = new string[] { "da", "asd" }, Company = " ", desc = " ", directors = "asd", releaseDate = "asdf", id = 8, languages = new string[] { "da", "asd" }, rating = "13", title = "sdfdf" };
+            Film upDatedFilm = new Film {title = "testupdate",actors = new string[] { "da", "asd" }, category = new string[] { "da", "asd" }, Company = " ", desc = " ", directors = "asd", releaseDate = "asdf", rating = "13" };
             _filmService = new CallManager();
 
-            await _filmService.UpdateFilm("Avengers: Endgame");
+           result = await _filmService.UpdateFilm(4.ToString(), upDatedFilm);
         }
 
         [Test]
@@ -35,6 +34,12 @@ namespace UserStory4Tests
         public void StatusDescriptionIsCreated()
         {
             Assert.That(_filmService.StatusDescription, Is.EqualTo("Created"));
+        }
+
+        [Test]
+        public void ResponseGivesCorrectUpdates()
+        {
+            Assert.That(result.result[0].title, Is.EqualTo("testupdate"));
         }
     }
 

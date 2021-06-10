@@ -57,10 +57,10 @@ namespace APITest
             StatusCode = (int)result.StatusCode;
         }
 
-        public async Task<Result> UpdateFilm(string filmName)
+        public async Task<Result> UpdateFilm(string id, Film upDate)
         {
             _newRequest = new RestRequest(Method.PATCH);
-            _newRequest.Resource = $"Films/?title={filmName.Replace(" ", "%20")}";
+            _newRequest.Resource = $"Films/id";
             var result = await _client.ExecuteAsync<string>(_newRequest);
 
 
