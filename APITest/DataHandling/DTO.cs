@@ -16,9 +16,8 @@ namespace APITest
     {
         public T Deserialize<T>(string ojectContent)
         {
-            string transform = ojectContent.Insert(0, "{\"result\":");
-            transform += '}';
-           var newType = JsonConvert.DeserializeObject<T>(transform);
+            
+           var newType = JsonConvert.DeserializeObject<T>(ojectContent);
             return newType;
         }
 

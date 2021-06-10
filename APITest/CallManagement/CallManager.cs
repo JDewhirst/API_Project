@@ -57,7 +57,7 @@ namespace APITest
             StatusCode = (int)result.StatusCode;
         }
 
-        public async Task<Result> UpdateFilm(string id, Film upDate)
+        public async Task<Film> UpdateFilm(string id, Film upDate)
         {
             _newRequest = new RestRequest(Method.PATCH);
             _newRequest.Resource = $"Films/{id}";
@@ -69,8 +69,15 @@ namespace APITest
 
             StatusDescription = result.StatusDescription;
             StatusCode = (int)result.StatusCode;
-            Result expected = _dto.Deserialize<Result>(result.Data);
+            Film expected = _dto.Deserialize<Film>(result.Content);
             return expected;
+        }
+
+        public string EncapsulateResult(string jsonresult)
+        {
+            string transform = jsonresult.Insert(0, "{\"result\":");
+            transform += '}';
+            return transform;
         }
 
 
@@ -91,7 +98,7 @@ namespace APITest
             StatusCode = (int)result.StatusCode;
 
             StatusDescription = result.StatusDescription;
-            Result expected = _dto.Deserialize<Result>($"{result.Data}");
+            Result expected = _dto.Deserialize<Result>($"{EncapsulateResult(result.Data)}");
             return expected;
         }
 
@@ -112,7 +119,7 @@ namespace APITest
             StatusCode = (int)result.StatusCode;
 
             StatusDescription = result.StatusDescription;
-            Result expected = _dto.Deserialize<Result>($"{result.Data}");
+            Result expected = _dto.Deserialize<Result>(EncapsulateResult(result.Data));
             return expected;
         }
 
@@ -130,7 +137,7 @@ namespace APITest
 
 
             StatusDescription = result.StatusDescription;
-            Result expected = _dto.Deserialize<Result>($"{result.Data}");
+            Result expected = _dto.Deserialize<Result>($"{EncapsulateResult(result.Data)}");
             return null;
         }
 

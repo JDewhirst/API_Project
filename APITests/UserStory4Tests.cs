@@ -12,7 +12,7 @@ namespace UserStory4Tests
 {
     public class WhenUpdateFilmCalledWithValidIDAndBody
     {
-        Result result;
+        Film result;
         public ICallable _filmService;
         [OneTimeSetUp]
         public async Task Setup()
@@ -39,7 +39,7 @@ namespace UserStory4Tests
         [Test]
         public void ResponseGivesCorrectUpdates()
         {
-            Assert.That(result.result[0].title, Is.EqualTo("testupdate"));
+            Assert.That(result.title, Is.EqualTo("testupdate"));
         }
     }
 
