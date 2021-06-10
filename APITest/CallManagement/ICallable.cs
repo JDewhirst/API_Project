@@ -8,5 +8,7 @@ namespace APITest
         string StatusDescription { get; }
         //Task<IResult> Query<IResult>(string input);
         Task<Film[]> Request(string input);
+
+        Task<Result> DeleteFilm(string request);
     }
 }

@@ -21,11 +21,25 @@ namespace APITest
         public CallManager(IRestClient client)
         {
             _client = client;
+            _dto = new DTO();
         }
 
         public CallManager()
         {
-            _client = new RestClient(ConfigReader.BaseURL());
+            _client = new RestClient(ConfigReader.BaseURL);
+            _dto = new DTO();
+        }
+
+        public async Task<Result> DeleteFilm(string request)
+        {
+            _newRequest = new RestRequest(Method.DELETE);
+            _newRequest.Resource = $"Movies/{request}";
+            var result = await _client.ExecuteAsync<string>(_newRequest);
+
+            StatusDescription = result.StatusDescription;
+            StatusCode = (int)result.StatusCode;
+            Result expected = _dto.Deserialize<Result>(result.Content);
+            return expected;
         }
 
 

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace DataModel
 {
 
-    public class Result
+    public class Result : IResult
     {
         public Film[] films { get; set; }
     }
