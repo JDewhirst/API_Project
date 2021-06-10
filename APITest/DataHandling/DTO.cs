@@ -18,9 +18,6 @@ namespace APITest
         {
             string transform = ojectContent.Insert(0, "{\"result\":");
             transform += '}';
-
-            
-
            var newType = JsonConvert.DeserializeObject<T>(transform);
             return newType;
         }

@@ -13,5 +13,6 @@ namespace APITest
         Task<Result> UpdateFilm(string request);
 
         Task<Result> Request(string request);
+        Task<Result> RequestFilmography(string v);
     }
 }

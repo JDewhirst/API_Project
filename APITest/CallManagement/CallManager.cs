@@ -92,6 +92,27 @@ namespace APITest
             return expected;
         }
 
+        public async Task<Result> RequestFilmography(string request)
+        {
+
+            _newRequest =
+                request != "" ? new RestRequest(Method.GET) :
+                throw new ArgumentException();
+            _newRequest.AddHeader("Content-Type", "application/Json");
+
+
+            //_newRequest.AddJsonBody(new JObject { new JProperty("postcodes", new JArray { "OX49 5NU", "M32 0JG", "NE30 1DP" })}.ToString());
+            _newRequest.Resource = $"Films/?directors={request}";
+            //_newRequest.Resource = $"postcodes";// Films/1";//?title={request.Replace(" ","%20")}";
+
+            var result = await _client.ExecuteAsync<string>(_newRequest);
+            StatusCode = (int)result.StatusCode;
+
+            StatusDescription = result.StatusDescription;
+            Result expected = _dto.Deserialize<Result>($"{result.Data}");
+            return expected;
+        }
+
         public async Task<Result> RequestAll()
         {
 
