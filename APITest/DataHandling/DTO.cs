@@ -14,31 +14,20 @@ namespace APITest
 {
     public class DTO
     {
-        public Film[] Deserialize(string ojectContent)
+        public T Deserialize<T>(string ojectContent)
         {
             string transform = ojectContent.Insert(0, "{\"result\":");
             transform += '}';
 
-            Tests.ForEach(x =>
-            {
-                int len = ojectContent.Length;
-                try
-                {
-                    JObject attempt = JObject.Parse(x);
-                }
-                catch(JsonSerializationException e)
-                {
-                    Debug.WriteLine("Serialization error");
-                }
-
-                catch (JsonReaderException ex)
-                {
-                    Debug.WriteLine("Read error");
-                }
-            });
+            
 
            var newType = JsonConvert.DeserializeObject<T>(transform);
             return newType;
+        }
+
+        public string Serialize(Film film)
+        {
+            return JsonConvert.SerializeObject(new Result { result = new Film[] { film} });
         }
     }
 }
