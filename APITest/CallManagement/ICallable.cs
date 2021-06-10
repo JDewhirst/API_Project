@@ -6,10 +6,9 @@ namespace APITest
     {
         int StatusCode { get; }
         string StatusDescription { get; }
-
         Task DeleteFilm(string request);
 
-        Task<Result> AddFilm(string request);
+        Task AddFilm(Film film);
 
         Task<Result> UpdateFilm(string request);
 

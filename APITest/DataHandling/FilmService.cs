@@ -27,20 +27,7 @@ namespace APITest
 
         public async Task MakeRequestAsync(string filmId)
         {
-
-            FilmSelected = filmId;
-
-            // Make request
             await CallManager.DeleteFilm(filmId);
-            
-
-            
-            //// Parse JSON response content
-            //JSON_Response = JObject.Parse(FilmResult);
-
-            //// Use DTO to convert JSON string to an object
-            //FilmResult.Deserialize<Film>()
-            ////.DeserialiseResponse(PostcodeResponse);
         }
 
     }

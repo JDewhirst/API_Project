@@ -18,9 +18,13 @@ namespace APITest
         {
             string transform = ojectContent.Insert(0, "{\"result\":");
             transform += '}';
-
            var newType = JsonConvert.DeserializeObject<T>(transform);
             return newType;
+        }
+
+        public string Serialize(Film film)
+        {
+            return JsonConvert.SerializeObject(new Result { result = new Film[] { film} });
         }
     }
 }

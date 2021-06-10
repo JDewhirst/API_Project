@@ -43,29 +43,31 @@ namespace APITest
 
         }
 
-        public async Task<Result> AddFilm(string request)
+        public async Task AddFilm(Film film)
         {
-            _newRequest = new RestRequest(Method.DELETE);
-            _newRequest.Resource = $"Films/{request}";
+            _newRequest = new RestRequest(Method.POST);
+            _newRequest.Resource = $"Films";
+            _newRequest.AddJsonBody(film);
+            _newRequest.AddHeader("Content-Type", "application/Json");
+
+
             var result = await _client.ExecuteAsync<string>(_newRequest);
 
             StatusDescription = result.StatusDescription;
             StatusCode = (int)result.StatusCode;
-            Result expected = _dto.Deserialize<Result>(result.Content);
-            return expected;
         }
 
-        public async Task<Result> UpdateFilm(string request)
+        public async Task<Result> UpdateFilm(string filmName)
         {
-            _newRequest = new RestRequest(Method.DELETE);
-            _newRequest.Resource = $"Films/{request}";
+            _newRequest = new RestRequest(Method.PATCH);
+            _newRequest.Resource = $"Films/?title={filmName.Replace(" ", "%20")}";
             var result = await _client.ExecuteAsync<string>(_newRequest);
 
 
             StatusDescription = result.StatusDescription;
             StatusCode = (int)result.StatusCode;
-            Result expected = _dto.Deserialize<Result>(result.Content);
-            return expected;
+            //Result expected = _dto.Deserialize<Result>(result.Content);
+            return null;
         }
 
 
