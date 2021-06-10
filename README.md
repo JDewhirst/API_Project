@@ -6,8 +6,15 @@ It makes use of [typicode](https://my-json-server.typicode.com/) placeholder RES
 
 ## Project Setup
 
-To set up this project requires Visual Studio 2019 and the .NET Framework 4.7.2 developer tools. The solution is split into two projects, APITest and APITEsts. APITest requires the NuGet packages Newtonsoft.JSon, RestSharp, and System.Configuration.ConfigurationManager, APITests requires Microsoft.NET.Test.Sdk, Moq, Newtonsoft.Json, NUnit, NUNit3TestAdapter, RestSharp, and System.Configuration.ConfigurationManger.
+To set up this project requires Visual Studio 2019 and the .NET Framework 4.7.2 developer tools. 
+
+The solution is split into two projects, APITest and APITEsts. 
+
+APITest requires the NuGet packages Newtonsoft.JSon, RestSharp, and System.Configuration.ConfigurationManager
+
+APITests requires Microsoft.NET.Test.Sdk, Moq, Newtonsoft.Json, NUnit, NUNit3TestAdapter, RestSharp, and System.Configuration.ConfigurationManger.
 
 ### Credits
 
-Bongani Luwemba, Hossain Ghazal, Jack Dewhirst
+[Bongani Luwemba]([Bongiboy777 (Bongani) (github.com)](https://github.com/Bongiboy777)), [Hossain Ghazal]([HuseyinAA (Huseyin) (github.com)](https://github.com/HuseyinAA)), [Jack Dewhirst]([JDewhirst (github.com)](https://github.com/JDewhirst))
+
