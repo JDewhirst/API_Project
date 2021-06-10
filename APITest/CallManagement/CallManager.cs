@@ -43,34 +43,20 @@ namespace APITest
         }
 
 
-        public async Task<IResult> Request<IResult>(string request)
+        public async Task<Film[]> Request(string request)
         {
-            _newRequest =
-                request == "" ? new RestRequest(Method.GET) :
-                throw new ArgumentException();
+            _newRequest = new RestRequest(Method.GET);
+
+            _newRequest.Timeout = -1;
+            _newRequest.AddHeader("Content-Type", "application/json");
+            _newRequest.Resource = ("Films");
 
             var result = await _client.ExecuteAsync<string>(_newRequest);
             StatusDescription = result.StatusDescription;
-            IResult expected = _dto.Deserialize<IResult>(result.Content);
-            return expected;
+            Film[] output = _dto.Deserialize(result.Content);
+            return output;
         }
 
-        public async Task<IResult> Request<IResult>(string request, JObject body)
-        {
-            
-            _newRequest =
-                request == "" ? new RestRequest(Method.GET) :
-                request == "" ? new RestRequest(Method.POST) :
-                request == "" ? new RestRequest(Method.PUT) :
-                request == "" ? new RestRequest(Method.PATCH) :
-                throw new ArgumentException();
-
-            _newRequest.AddJsonBody(body.ToString());
-
-            var result = await _client.ExecuteAsync<string>(_newRequest);
-            StatusDescription = result.StatusDescription;
-            IResult expected = _dto.Deserialize<IResult>(result.Content);
-            return expected;
-        }
+        
     }
 }
