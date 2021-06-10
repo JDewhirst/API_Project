@@ -16,7 +16,7 @@ namespace UserStory3Tests
         [OneTimeSetUp]
         public async Task Setup()
         {
-            Film film = new Film { actors = new string[] { "da", "asd" }, category = new string[] { "da", "asd" }, Company = " ", desc = " ", directors = "asd", releaseDate = "asdf", id = 2, languages = new string[] { "da", "asd" }, rating = "13", title = "sdfdf" };
+            Film film = new Film { actors = new string[] { "da", "asd" }, category = new string[] { "da", "asd" }, Company = " ", desc = " ", directors = "asd", releaseDate = "asdf", id = 9, languages = new string[] { "da", "asd" }, rating = "13", title = "sdfdf" };
             _filmService = new CallManager();
 
             await _filmService.AddFilm(film);

@@ -47,7 +47,7 @@ namespace APITest
         {
             _newRequest = new RestRequest(Method.POST);
             _newRequest.Resource = $"Films";
-            _newRequest.AddJsonBody(film);
+            _newRequest.AddJsonBody(_dto.Serialize(film));
             _newRequest.AddHeader("Content-Type", "application/Json");
 
 

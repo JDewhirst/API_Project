@@ -24,7 +24,8 @@ namespace APITest
 
         public string Serialize(Film film)
         {
-            return JsonConvert.SerializeObject(new Result { result = new Film[] { film} });
+            string ans =  JsonConvert.SerializeObject(film);
+            return ans;
         }
     }
 }
