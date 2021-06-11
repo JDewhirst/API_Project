@@ -39,13 +39,21 @@ In hindsight we perhaps created more work for ourselves by using typicode rather
 
 **Sprint Goals**
 
-- [ ] User Story 1
-- [ ] User Story 2
-- [ ] User Story 3
-- [ ] User Story 4
-- [ ] Prepare for presentation
-- [ ] Update README.md
+- [x] User Story 1
+- [x] User Story 2
+- [x] User Story 3
+- [x] User Story 4
+- [x] Prepare for presentation
+- [x] Update README.md
 
 **Pre-Sprint Project Board**
 
 ![](ProjectProgressImages/sprint2_presprint_projectboard.png)
+
+**Sprint Retrospective**
+
+We accomplished everything we set out to on this sprint, save for two tests which are failing. Otherwise finishing the project, as well as adding some extra tests along the way. 
+
+**Post Sprint Project Board**
+
+![image-20210611091030375](ProjectProgressImages/sprint2_postsprint_projectboard.png)
